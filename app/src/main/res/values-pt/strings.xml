@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_sign_in_short">Entrar</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Senha</string>
+    <string name="title_activity_login">Entrar</string>
+    <string name="welcome">Seja bem vindo ao</string>
+    <string name="invalid_username">Não é um email válido</string>
+    <string name="action_sign_in" translatable="false">Acessar conta</string>
+    <string name="app_description">Plataforma digital baseada em blockchain criada para assegurar todo o processo de
+        coleta, geração e verificação de documentos acadêmicos
+    </string>
+    <string name="invalid_password">Senha inválida!</string>
+    <string name="login_failed">Nãofoi possível entrar</string>
+    <string name="register_account">Criar conta</string>
+</resources>
