@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "546894799226",
+    "firebase_url": "https://steamauth-db59e.firebaseio.com",
+    "project_id": "steamauth-db59e",
+    "storage_bucket": "steamauth-db59e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546894799226:android:b8baac5825b37e00",
+        "android_client_info": {
+          "package_name": "fiap.com.steam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546894799226-j0gnnqt23nirhleb9148eouc8a12h5uv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAf3aprk-WIzIsSQnGJfK6-DCzEZJGh4Ks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546894799226-j0gnnqt23nirhleb9148eouc8a12h5uv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
