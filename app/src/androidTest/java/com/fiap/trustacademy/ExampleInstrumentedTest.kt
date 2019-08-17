@@ -1,4 +1,4 @@
-package com.fiap.trustacademy
+package fiap.com.steam
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.fiap.trustacademy", appContext.packageName)
+        assertEquals("fiap.com.steam", appContext.packageName)
     }
 }
