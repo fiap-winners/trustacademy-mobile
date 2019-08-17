@@ -1,4 +1,4 @@
-package com.fiap.trustacademy
+package fiap.com.steam
 
 import org.junit.Test
 
