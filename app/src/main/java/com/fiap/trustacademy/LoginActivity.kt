@@ -1,112 +1,117 @@
-package com.fiap.trustacademy
+package fiap.com.steam
 
+import android.app.ProgressDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.view.View
+import android.view.Window
+import android.view.WindowManager
+import android.os.Build
+import android.text.TextUtils
+import android.util.Log
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
+import com.google.firebase.auth.FirebaseAuth
+import org.w3c.dom.Text
 
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- */
 class LoginActivity : AppCompatActivity() {
-    private val mHideHandler = Handler()
-    private val mHidePart2Runnable = Runnable {
-        // Delayed removal of status and navigation bar
 
-    }
-    private val mShowPart2Runnable = Runnable {
-        // Delayed display of UI elements
-        supportActionBar?.show()
-    }
-    private var mVisible: Boolean = false
-    private val mHideRunnable = Runnable { hide() }
-    /**
-     * Touch listener to use for in-layout UI controls to delay hiding the
-     * system UI. This is to prevent the jarring behavior of controls going away
-     * while interacting with activity UI.
-     */
-    private val mDelayHideTouchListener = View.OnTouchListener { _, _ ->
-        if (AUTO_HIDE) {
-            delayedHide(AUTO_HIDE_DELAY_MILLIS)
-        }
-        false
-    }
+    private val TAG = "LoginActivity"
+
+    //variaveis globais
+
+    private var email: String? = null
+    private var password: String? = null
+
+    //elementos da interface UI
+
+    private var tvForgotPassword: TextView? = null
+    private var etEmail: TextView? = null
+    private var etPassword: TextView? = null
+    private var btnLogin: TextView? = null
+    private var btnCreateAccount: TextView? = null
+    private var mProgressBar: ProgressDialog? = null
+
+    //referencias ao banco de dados
+
+    private var mAuth: FirebaseAuth? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_login)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        mVisible = true
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColorTo(R.color.colorPrimary)
+        }
+
+        initialise()
 
     }
 
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
-
-        // Trigger the initial hide() shortly after the activity has been
-        // created, to briefly hint to the user that UI controls
-        // are available.
-        delayedHide(100)
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    fun Window.setStatusBarColorTo(color: Int) {
+        this.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        this.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        this.statusBarColor = ContextCompat.getColor(baseContext, color)
     }
 
+    private fun initialise(){
+        tvForgotPassword = findViewById(R.id.tv_forgot_password) as TextView
+        etEmail = findViewById(R.id.et_email) as EditText
+        etPassword = findViewById(R.id.et_password) as EditText
+        btnLogin = findViewById(R.id.btn_login) as Button
+        btnCreateAccount = findViewById(R.id.btn_register_account) as Button
+        mProgressBar = ProgressDialog(this)
 
+        mAuth = FirebaseAuth.getInstance()
 
-    private fun toggle() {
-        if (mVisible) {
-            hide()
+        tvForgotPassword!!
+            .setOnClickListener{ startActivity(Intent(this@LoginActivity,ForgotPasswordActivity::class.java))}
+
+        btnCreateAccount!!.setOnClickListener { startActivity(Intent(this@LoginActivity,CreateAccountActivity::class.java))}
+
+        btnLogin!!.setOnClickListener { loginUser()}
+
+    }
+
+    private fun loginUser(){
+        email = etEmail?.text.toString()
+        password = etPassword?.text.toString()
+
+        if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
+            mProgressBar!!.setMessage("Verificando Usuario")
+            mProgressBar!!.show()
+
+            Log.d(TAG, "Login do usuario")
+
+            mAuth!!.signInWithEmailAndPassword(email!!, password!!).addOnCompleteListener(this){
+                task ->
+
+                mProgressBar!!.hide()
+
+                //Autenticando o usuario, atualizando Ui com as informações de login
+
+                if (task.isSuccessful) {
+                    Log.d(TAG, "Logado com sucesso")
+                    updateUi()
+                } else {
+                    Log.e(TAG, "erro ao logar", task.exception)
+                    Toast.makeText(this@LoginActivity, "Autenticação falhou.", Toast.LENGTH_SHORT).show()
+                }
+            }
         } else {
-            show()
+            Toast.makeText(this, "Entre com mais detalhes", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun hide() {
-        // Hide UI first
-        supportActionBar?.hide()
-        mVisible = false
-
-        // Schedule a runnable to remove the status and navigation bar after a delay
-        mHideHandler.removeCallbacks(mShowPart2Runnable)
-        mHideHandler.postDelayed(mHidePart2Runnable, UI_ANIMATION_DELAY.toLong())
-    }
-
-    private fun show() {
-        // Show the system bar
-        mVisible = true
-
-        // Schedule a runnable to display UI elements after a delay
-        mHideHandler.removeCallbacks(mHidePart2Runnable)
-        mHideHandler.postDelayed(mShowPart2Runnable, UI_ANIMATION_DELAY.toLong())
-    }
-
-    /**
-     * Schedules a call to hide() in [delayMillis], canceling any
-     * previously scheduled calls.
-     */
-    private fun delayedHide(delayMillis: Int) {
-        mHideHandler.removeCallbacks(mHideRunnable)
-        mHideHandler.postDelayed(mHideRunnable, delayMillis.toLong())
-    }
-
-    companion object {
-        /**
-         * Whether or not the system UI should be auto-hidden after
-         * [AUTO_HIDE_DELAY_MILLIS] milliseconds.
-         */
-        private val AUTO_HIDE = true
-
-        /**
-         * If [AUTO_HIDE] is set, the number of milliseconds to wait after
-         * user interaction before hiding the system UI.
-         */
-        private val AUTO_HIDE_DELAY_MILLIS = 3000
-
-        /**
-         * Some older devices needs a small delay between UI widget updates
-         * and a change of the status and navigation bar.
-         */
-        private val UI_ANIMATION_DELAY = 300
+    private fun updateUi(){
+        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
     }
 }
