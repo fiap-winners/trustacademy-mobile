@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_sign_in_short">Entrar</string>
-    <string name="prompt_email">Email</string>
     <string name="prompt_password">Senha</string>
     <string name="title_activity_login">Entrar</string>
     <string name="welcome">Seja bem vindo ao</string>
     <string name="invalid_username">Não é um email válido</string>
     <string name="action_sign_in" translatable="false">Acessar conta</string>
-    <string name="app_description">Plataforma digital baseada em blockchain criada para assegurar todo o processo de
-        coleta, geração e verificação de documentos acadêmicos
-    </string>
+    <string name="app_description">"Plataforma digital baseada em blockchain criada para assegurar todo o processo de coleta, geração e verificação de documentos acadêmicos"</string>
     <string name="invalid_password">Senha inválida!</string>
-    <string name="login_failed">Nãofoi possível entrar</string>
+    <string name="login_failed">Não foi possível entrar</string>
     <string name="register_account">Criar conta</string>
+    <string name="account_name">Email</string>
+    <string name="first_name">Primeiro Nome</string>
+    <string name="forgot_your_login_info">Esqueceu seu login?</string>
+    <string name="last_name">Sobrenome</string>
+    <string name="password">Senha</string>
+    <string name="remember_my_password">Lembrar minha senha</string>
+    <string name="username">Usuário</string>
+    <string name="sign_in">Acessar</string>
+    <string name="reset_senha">Resetar Senha</string>
+    <string name="create_account">Criar conta</string>
+    <string name="email_hint">teste@exemplo.com</string>
 </resources>

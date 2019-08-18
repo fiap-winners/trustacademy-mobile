@@ -1,4 +1,4 @@
-package fiap.com.steam
+package com.fiap.trustacademy
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +9,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import org.w3c.dom.Text
 
 class ForgotPasswordActivity : AppCompatActivity() {
 

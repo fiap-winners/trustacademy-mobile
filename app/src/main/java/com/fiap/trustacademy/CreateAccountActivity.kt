@@ -1,4 +1,4 @@
-package fiap.com.steam
+package com.fiap.trustacademy
 
 import android.app.ProgressDialog
 import android.content.Intent
@@ -54,7 +54,7 @@ class CreateAccountActivity : AppCompatActivity() {
     private fun initialise(){
         etFirstName = findViewById(R.id.et_first_name) as EditText
         etLastName = findViewById(R.id.et_last_name) as EditText
-        etEmail = findViewById(R.id.et_last_name) as EditText
+        etEmail = findViewById(R.id.et_email) as EditText
         etPassword = findViewById(R.id.et_password) as EditText
         btnCreateAccount = findViewById(R.id.btn_register) as Button
         mProgressBar = ProgressDialog(this)
@@ -82,7 +82,7 @@ class CreateAccountActivity : AppCompatActivity() {
             Toast.makeText(this, "Entre com mais detalhes", Toast.LENGTH_SHORT).show()
         }
 
-        mProgressBar!!.setMessage("Registrando Usuario...")
+        mProgressBar!!.setMessage("Registrando Usuário...")
         mProgressBar!!.show()
 
         mAuth!!
@@ -115,7 +115,7 @@ class CreateAccountActivity : AppCompatActivity() {
 
     private fun updateUserInfoandUi(){
         //Iniciar a nova atividade
-        val intent = Intent(this@CreateAccountActivity, MainActivity::class.java)
+        val intent = Intent(this@CreateAccountActivity, SplashscreenActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
 
@@ -127,11 +127,11 @@ class CreateAccountActivity : AppCompatActivity() {
             task ->
 
             if (task.isSuccessful){
-                Toast.makeText(this@CreateAccountActivity, "Verification emial sent to" + mUser.getEmail(),
+                Toast.makeText(this@CreateAccountActivity, "Verification email sent to" + mUser.getEmail(),
                     Toast.LENGTH_SHORT).show()
                 } else{
                     Log.e(TAG, "SenEmailVerification", task.exception)
-                    Toast.makeText(this@CreateAccountActivity, "Failed to send Verification email.",
+                    Toast.makeText(this@CreateAccountActivity, "Failed to send verification email.",
                         Toast.LENGTH_SHORT).show()
             }
         }
