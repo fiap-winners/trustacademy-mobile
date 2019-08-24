@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                   xmlns:tools="http://schemas.android.com/tools"
+                                   android:layout_width="match_parent"
+                                   app:cardBackgroundColor="@color/cardview_light_background"
+                                   app:cardCornerRadius="10dp"
+                                   android:layout_marginBottom="5dp"
+                                   android:layout_height="wrap_content" app:contentPaddingBottom="10dp"
+                                   app:contentPaddingLeft="10dp" app:contentPaddingRight="10dp"
+                                   app:contentPaddingTop="10dp"
+                                   app:cardElevation="30dp" app:cardMaxElevation="30dp"
+                                   android:layout_marginLeft="8dp" android:layout_marginTop="10dp"
+                                   android:layout_marginRight="8dp">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <TextView
+                    android:text="01/01/2000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/docLastDate" android:layout_weight="1"
+                    android:textColor="@android:color/tertiary_text_light"
+            />
+            <TextView
+                    android:text="0 versão"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/docVersionsQty" android:layout_weight="1"
+                    android:textColor="@android:color/tertiary_text_light" android:textAlignment="viewEnd"/>
+        </LinearLayout>
+        <TextView
+                android:textColor="@android:color/holo_blue_dark"
+                android:layout_width="match_parent"
+                tools:text="Ngenge Senior"
+                android:id="@+id/docName"
+                android:layout_height="wrap_content" android:textAlignment="viewStart" android:textSize="18sp"
+                android:textStyle="bold"/>
+        <TextView
+                android:textColor="@android:color/tertiary_text_light"
+                android:layout_width="match_parent"
+                tools:text="12345678"
+
+                android:id="@+id/docCourse"
+                android:layout_height="wrap_content" android:textStyle="bold"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

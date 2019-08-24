@@ -21,4 +21,15 @@
     <string name="reset_senha">Resetar Senha</string>
     <string name="create_account">Criar conta</string>
     <string name="email_hint">teste@exemplo.com</string>
+    <string name="document_last_update">Última atualização:</string>
+    <string name="close">Sair</string>
+    <string name="documents">Documentos</string>
+    <string name="account">Conta</string>
+    <string name="not_implemented">Ainda não implementado!</string>
+    <string name="at_time">às</string>
+    <string name="last_update">Última atualização:</string>
+    <string name="version">versão</string>
+    <string name="versions">versões</string>
+    <string name="Details">Detalhes</string>
+    <string name="Versions">Versões</string>
 </resources>

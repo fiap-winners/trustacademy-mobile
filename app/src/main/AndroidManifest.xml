@@ -3,6 +3,7 @@
           package="com.fiap.trustacademy">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCEPT_HANDOVER"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
@@ -18,9 +19,9 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".DocumentsActivity">
+        <activity android:name=".DocsList">
         </activity>
-        <activity android:name=".DocumentsDetailActivity">
+        <activity android:name=".DocDetailActivity">
         </activity>
         <activity android:name=".ForgotPasswordActivity">
         </activity>
@@ -28,7 +29,8 @@
         </activity>
         <activity android:name=".LoginActivity">
         </activity>
-        <activity android:name=".SplashscreenActivity">
+        <activity android:name=".SplashscreenActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

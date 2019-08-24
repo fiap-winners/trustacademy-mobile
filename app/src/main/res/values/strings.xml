@@ -24,4 +24,15 @@
     <string name="login_failed">Login failed</string>
     <string name="invalid_username">Invalid username</string>
     <string name="prompt_email" translatable="false">Email</string>
+    <string name="document_last_update">Last update:</string>
+    <string name="close">Close</string>
+    <string name="documents">Documents</string>
+    <string name="account">Account</string>
+    <string name="not_implemented">Not implemented yet!</string>
+    <string name="at_time">at</string>
+    <string name="last_update">Last update:</string>
+    <string name="version">version</string>
+    <string name="versions">versions</string>
+    <string name="Details">Details</string>
+    <string name="Versions">Versions</string>
 </resources>

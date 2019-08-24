@@ -43,11 +43,16 @@ class SplashscreenActivity : AppCompatActivity() {
 
         mVisible = true
 
+        btn_Register.setOnClickListener {
+            val intentLogin = Intent(this, DocsList::class.java)
+            startActivity(intentLogin)
+        }
+/*
         btn_Login.setOnClickListener {
             val intentLogin = Intent(this, LoginActivity::class.java)
             startActivity(intentLogin)
         }
-    }
+  */  }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)

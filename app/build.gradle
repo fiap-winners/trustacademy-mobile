@@ -9,8 +9,8 @@ android {
     buildToolsVersion "29.0.1"
     defaultConfig {
         applicationId "fiap.com.steam"
-        minSdkVersion 24
-        targetSdkVersion 26
+        minSdkVersion 22
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -22,7 +22,9 @@ android {
         }
     }
 }
-
+androidExtensions {
+    experimental = true
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -36,6 +38,14 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0-alpha02'
     implementation 'com.google.firebase:firebase-core:17.0.1'
     implementation 'androidx.cardview:cardview:1.0.0'
+
+
+	//-- Retrofit
+	implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+
+	//-- Gson
+	implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0-beta02'
 }
 
 apply plugin: 'com.google.gms.google-services'

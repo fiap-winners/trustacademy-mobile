@@ -94,7 +94,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun updateUi(){
-        val intent = Intent(this, DocumentsActivity::class.java)
+        val intent = Intent(this, DocsList::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
     }
