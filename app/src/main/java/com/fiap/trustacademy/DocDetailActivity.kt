@@ -25,7 +25,7 @@ class DocDetailActivity : AppCompatActivity() {
         }
 
         btnAccount.setOnClickListener {
-            Toast.makeText(this, this.getString(R.string.not_implemented), Toast.LENGTH_SHORT)
+            Toast.makeText(this, getString(R.string.not_implemented), Toast.LENGTH_SHORT)
             .show()
         }
 

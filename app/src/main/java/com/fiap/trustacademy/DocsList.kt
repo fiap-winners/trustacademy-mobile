@@ -32,23 +32,29 @@ class DocsList : AppCompatActivity(), OnItemClickListener{
 
     override fun onItemClicked(card: Card) {
 
-        val docVersionsDate: ArrayList<String> = ArrayList()
-        val docVersionsTime: ArrayList<String> = ArrayList()
-        val docVersionsContent: ArrayList<String> = ArrayList()
-        val docsSelected: Iterator<Document> = selectDocsFromCard(card).iterator()
+        if (card.documentStatus != "") {
+            Toast.makeText(this, getString(R.string.document_is_pending), Toast.LENGTH_LONG)
+                .show()
+        } else {
 
-        docsSelected.forEach {
-            docVersionsDate.add(DateFormat.getDateFormat(this).format(it.modifiedAt))
-            docVersionsTime.add(DateFormat.getTimeFormat(this).format(it.modifiedAt))
-            docVersionsContent.add(it.content)
+            val docVersionsDate: ArrayList<String> = ArrayList()
+            val docVersionsTime: ArrayList<String> = ArrayList()
+            val docVersionsContent: ArrayList<String> = ArrayList()
+            val docsSelected: Iterator<Document> = selectDocsFromCard(card).iterator()
+
+            docsSelected.forEach {
+                docVersionsDate.add(DateFormat.getDateFormat(this).format(it.modifiedAt))
+                docVersionsTime.add(DateFormat.getTimeFormat(this).format(it.modifiedAt))
+                docVersionsContent.add(it.content)
+            }
+
+            val intentDocDetail = Intent(this, DocDetailActivity::class.java)
+            intentDocDetail.putExtra("SELECTED_CARD", card)
+            intentDocDetail.putExtra("SELECTED_DOCSDATE", docVersionsDate)
+            intentDocDetail.putExtra("SELECTED_DOCSTIME", docVersionsTime)
+            intentDocDetail.putExtra("SELECTED_DOCSCONTENT", docVersionsContent)
+            startActivity(intentDocDetail)
         }
-
-        val intentDocDetail = Intent(this, DocDetailActivity::class.java)
-        intentDocDetail.putExtra("SELECTED_CARD", card)
-        intentDocDetail.putExtra("SELECTED_DOCSDATE", docVersionsDate)
-        intentDocDetail.putExtra("SELECTED_DOCSTIME", docVersionsTime)
-        intentDocDetail.putExtra("SELECTED_DOCSCONTENT", docVersionsContent)
-        startActivity(intentDocDetail)
     }
 
     private fun selectDocsFromCard(card: Card):  List<Document> {
