@@ -12,5 +12,6 @@ data class Document(
     @SerializedName("type")val type: DocumentType,
     @SerializedName("content")val content: String,
     @SerializedName("createAt")val createAt: Date,
-    @SerializedName("modifiedAt")val modifiedAt: Date?
+    @SerializedName("modifiedAt")val modifiedAt: Date?,
+    @SerializedName( "status")val status: String
 ) {}

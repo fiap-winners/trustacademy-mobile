@@ -12,6 +12,7 @@ class DocsListItem(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val docVersionsQty = itemView.docVersionsQty
     val docName = itemView.docName
     val docCourse = itemView.docCourse
+    val docStatus = itemView.docStatus
 
     fun bind(doc: Card, clickListener: OnItemClickListener)
     {
@@ -19,6 +20,7 @@ class DocsListItem(itemView: View) : RecyclerView.ViewHolder(itemView) {
         docVersionsQty.text = doc.documentVersionQty
         docName.text = doc.documentTypeName
         docCourse.text = doc.courseName
+        docStatus.text = doc.documentStatus
 
         itemView.setOnClickListener {
             clickListener.onItemClicked(doc)

@@ -61,23 +61,26 @@
                         android:layout_height="match_parent">
 
                     <LinearLayout
-                            android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:layout_gravity="start|right"
+                            android:orientation="horizontal">
+
                         <TextView
+                                android:id="@+id/docLastDate"
+                                android:layout_width="210dp"
+                                android:layout_height="wrap_content"
                                 android:text="01/01/2000"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" android:id="@+id/docLastDate"
-                                android:layout_weight="1"
-                                android:textColor="@android:color/tertiary_text_light"
-                        />
+                                android:textColor="@android:color/tertiary_text_light" />
+
                         <TextView
+                                android:id="@+id/docVersionsQty"
+                                android:layout_width="158dp"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="13dp"
                                 android:text="0 versão"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" android:id="@+id/docVersionsQty"
-                                android:layout_weight="1"
-                                android:textColor="@android:color/tertiary_text_light" android:textAlignment="viewEnd"
-                        />
+                                android:textAlignment="viewEnd"
+                                android:textColor="@android:color/tertiary_text_light" />
                     </LinearLayout>
                     <TextView
                             android:textColor="@android:color/holo_blue_dark"

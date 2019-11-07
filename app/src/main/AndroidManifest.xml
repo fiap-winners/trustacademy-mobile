@@ -19,7 +19,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme.Fullscreen">
-        <activity android:name=".DocsList">
+        <activity android:name=".SplashscreenActivity">
         </activity>
         <activity android:name=".DocDetailActivity">
         </activity>
@@ -29,7 +29,7 @@
         </activity>
         <activity android:name=".LoginActivity">
         </activity>
-        <activity android:name=".SplashscreenActivity"
+        <activity android:name=".DocsList"
                   android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

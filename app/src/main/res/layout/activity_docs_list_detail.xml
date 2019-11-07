@@ -29,11 +29,23 @@
                     android:layout_height="wrap_content" android:id="@+id/docLastDate" android:layout_weight="1"
                     android:textColor="@android:color/tertiary_text_light"
             />
+
             <TextView
-                    android:text="0 versão"
+                    android:id="@+id/docStatus"
+                    android:layout_width="98dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/holo_red_dark" />
+
+            <TextView
+                    android:id="@+id/docVersionsQty"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/docVersionsQty" android:layout_weight="1"
-                    android:textColor="@android:color/tertiary_text_light" android:textAlignment="viewEnd"/>
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0 versão"
+                    android:textAlignment="viewEnd"
+                    android:textColor="@android:color/tertiary_text_light" />
         </LinearLayout>
         <TextView
                 android:textColor="@android:color/holo_blue_dark"

@@ -32,9 +32,9 @@ class DocsList : AppCompatActivity(), OnItemClickListener{
 
     override fun onItemClicked(card: Card) {
 
-        var docVersionsDate: ArrayList<String> = ArrayList()
-        var docVersionsTime: ArrayList<String> = ArrayList()
-        var docVersionsContent: ArrayList<String> = ArrayList()
+        val docVersionsDate: ArrayList<String> = ArrayList()
+        val docVersionsTime: ArrayList<String> = ArrayList()
+        val docVersionsContent: ArrayList<String> = ArrayList()
         val docsSelected: Iterator<Document> = selectDocsFromCard(card).iterator()
 
         docsSelected.forEach {
@@ -104,15 +104,16 @@ class DocsList : AppCompatActivity(), OnItemClickListener{
         var docIterator = documents.sortedWith(compareBy({it.institute.id}, {it.department.id}, {it.course.id}, {it.type.id})).toMutableList().iterator()
         var cards: MutableList<Card> = mutableListOf<Card>()
 
-        var instituteId: Long = 0L
-        var departmentId: Long = 0L
-        var courseId: Long = 0L
-        var typeId: Long = 0L
+        var instituteId = 0L
+        var departmentId = 0L
+        var courseId = 0L
+        var typeId = 0L
 
-        var courseName: String = ""
-        var typeName: String = ""
-        var lastUpdatedDate: Date = Date()
-        var versionsQty: Int = 1
+        var courseName = ""
+        var typeName = ""
+        var lastUpdatedDate = Date()
+        var versionsQty = 1
+        var documentStatus = ""
 
         var document = docIterator.next()
 
@@ -124,6 +125,8 @@ class DocsList : AppCompatActivity(), OnItemClickListener{
         courseName = document.department.name + " : " + document.course.name
         typeName = document.type.name
         lastUpdatedDate = if(document.modifiedAt != null) document.modifiedAt!! else document.createAt
+//        documentStatus = document.status
+        documentStatus = getString(R.string.document_pending)
 
         while (docIterator.hasNext()) {
 
@@ -136,7 +139,8 @@ class DocsList : AppCompatActivity(), OnItemClickListener{
                         this.getString(R.string.last_update) + " " + DateFormat.getDateFormat(this).format(lastUpdatedDate),
                         versionsQty.toString() + " " + if (versionsQty > 1) this.getString(R.string.versions) else this.getString(R.string.version),
                         typeName,
-                        courseName
+                        courseName,
+                        documentStatus
                     )
                 )
 
@@ -164,7 +168,8 @@ class DocsList : AppCompatActivity(), OnItemClickListener{
                 this.getString(R.string.last_update) + " " + DateFormat.getDateFormat(this).format(lastUpdatedDate),
                 versionsQty.toString() + " " + if (versionsQty > 1) this.getString(R.string.versions) else this.getString(R.string.version),
                 typeName,
-                courseName
+                courseName,
+                documentStatus
             )
         )
 
