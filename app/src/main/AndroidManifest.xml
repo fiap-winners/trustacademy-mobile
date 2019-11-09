@@ -29,6 +29,8 @@
         </activity>
         <activity android:name=".LoginActivity">
         </activity>
+        <activity android:name=".RequestDocActivity">
+        </activity>
         <activity android:name=".DocsList"
                   android:screenOrientation="portrait">
             <intent-filter>

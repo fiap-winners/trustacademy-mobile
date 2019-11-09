@@ -81,9 +81,23 @@ class DocsList : AppCompatActivity(), OnItemClickListener{
         }
 
         btnDocuments.setOnClickListener {
+/*
             val call = RetrofitFactory().retrofitService().getDocumentsByInstitute(INSTITUTE_ID)
             getDocuments(call)
+
+ */
+            val intentRequestDoc = Intent(this, RequestDocActivity::class.java)
+            startActivity(intentRequestDoc)
+
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        progressBar.visibility = View.VISIBLE
+        val call = RetrofitFactory().retrofitService().getDocumentsByStudent(INSTITUTE_ID, STUDENT_ID)
+        getDocuments(call)
     }
 
     fun getDocuments(call: Call<List<Document>>) {
@@ -102,7 +116,6 @@ class DocsList : AppCompatActivity(), OnItemClickListener{
                 progressBar.visibility = View.INVISIBLE
             }
         })
-
     }
 
     fun callDocListView(documents: List<Document>) {
@@ -132,7 +145,7 @@ class DocsList : AppCompatActivity(), OnItemClickListener{
         typeName = document.type.name
         lastUpdatedDate = if(document.modifiedAt != null) document.modifiedAt!! else document.createAt
 //        documentStatus = document.status
-        documentStatus = getString(R.string.document_pending)
+//        documentStatus = getString(R.string.document_pending)
 
         while (docIterator.hasNext()) {
 
