@@ -2,16 +2,20 @@ package com.fiap.trustacademy
 
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
 import android.os.Build
 import android.util.Log
+import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -20,9 +24,8 @@ class LoginActivity : AppCompatActivity() {
     //elementos da interface UI
     private var mProgressBar: ProgressDialog? = null
 
-    //referencias ao banco de dados
+        //referencias ao banco de dados
     private var mAuth: FirebaseAuth? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +64,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intentLogin)
         }
 
+
     }
 
     private fun loginUser(){
@@ -91,11 +95,19 @@ class LoginActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Entre com mais detalhes", Toast.LENGTH_SHORT).show()
         }
+
     }
 
     private fun updateUi(){
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+
+    }
+
+    fun Enviar (){
         val intent = Intent(this, DocsList::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
     }
+
+
 }
