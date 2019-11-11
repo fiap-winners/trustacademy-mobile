@@ -28,27 +28,6 @@
                 android:textSize="24sp" />
     </androidx.cardview.widget.CardView>
 
-    <Spinner
-            android:id="@+id/spnDepartments"
-            android:layout_width="236dp"
-            android:layout_height="24dp"
-            android:layout_marginBottom="64dp"
-            android:spinnerMode="dropdown"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-            android:id="@+id/spnCourses"
-            android:layout_width="262dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spnDepartments" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bottomBarReqDoc"
             android:layout_width="0dp"
@@ -95,16 +74,80 @@
                 android:layout_marginEnd="2dp"
                 android:layout_marginBottom="8dp"
                 android:enabled="false"
-                android:text="Button"
+                android:text="@string/save"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btnClose"
                 app:layout_constraintStart_toEndOf="@+id/btnRequestDocuments"
                 app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topBar">
+
+        <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:text="@string/new_document"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+        <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Escolha o tipo de documento" />
+
+        <Spinner
+                android:id="@+id/spnDocType"
+                style="@android:style/Widget.Material.Light.Spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown" />
+
+        <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Departamento" />
+
+        <Spinner
+                android:id="@+id/spnDepartments"
+                style="@android:style/Widget.Material.Light.Spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown" />
+
+        <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Curso" />
+
+        <Spinner
+                android:id="@+id/spnCourses"
+                style="@android:style/Widget.Material.Light.Spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
     <ProgressBar
             android:id="@+id/progressBar2"
-            style="?android:attr/progressBarStyle"
+            style="@android:style/Widget.Material.Light.ProgressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@+id/bottomBarReqDoc"
@@ -112,19 +155,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/topBar"
             tools:visibility="invisible" />
-
-    <Spinner
-            android:id="@+id/spnDocType"
-            android:layout_width="254dp"
-            android:layout_height="22dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="64dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/topBar"
-            app:layout_constraintVertical_bias="0.38" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

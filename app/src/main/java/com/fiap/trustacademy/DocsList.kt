@@ -32,7 +32,7 @@ class DocsList : AppCompatActivity(), OnItemClickListener{
 
     override fun onItemClicked(card: Card) {
 
-        if (card.documentStatus != "") {
+        if (card.documentStatus == "") {
             Toast.makeText(this, getString(R.string.document_is_pending), Toast.LENGTH_LONG)
                 .show()
         } else {
@@ -40,12 +40,14 @@ class DocsList : AppCompatActivity(), OnItemClickListener{
             val docVersionsDate: ArrayList<String> = ArrayList()
             val docVersionsTime: ArrayList<String> = ArrayList()
             val docVersionsContent: ArrayList<String> = ArrayList()
+            val docVersionsStatus: ArrayList<String> = ArrayList()
             val docsSelected: Iterator<Document> = selectDocsFromCard(card).iterator()
 
             docsSelected.forEach {
                 docVersionsDate.add(DateFormat.getDateFormat(this).format(it.modifiedAt))
                 docVersionsTime.add(DateFormat.getTimeFormat(this).format(it.modifiedAt))
                 docVersionsContent.add(it.content)
+                docVersionsStatus.add(it.status)
             }
 
             val intentDocDetail = Intent(this, DocDetailActivity::class.java)
@@ -53,6 +55,7 @@ class DocsList : AppCompatActivity(), OnItemClickListener{
             intentDocDetail.putExtra("SELECTED_DOCSDATE", docVersionsDate)
             intentDocDetail.putExtra("SELECTED_DOCSTIME", docVersionsTime)
             intentDocDetail.putExtra("SELECTED_DOCSCONTENT", docVersionsContent)
+            intentDocDetail.putExtra("SELECTED STATUS", docVersionsStatus)
             startActivity(intentDocDetail)
         }
     }
@@ -76,16 +79,10 @@ class DocsList : AppCompatActivity(), OnItemClickListener{
         }
 
         btnAccount.setOnClickListener {
-            Toast.makeText(this, this.getString(R.string.not_implemented), Toast.LENGTH_SHORT)
-                .show()
+            this.onResume()
         }
 
         btnDocuments.setOnClickListener {
-/*
-            val call = RetrofitFactory().retrofitService().getDocumentsByInstitute(INSTITUTE_ID)
-            getDocuments(call)
-
- */
             val intentRequestDoc = Intent(this, RequestDocActivity::class.java)
             startActivity(intentRequestDoc)
 
@@ -145,7 +142,7 @@ class DocsList : AppCompatActivity(), OnItemClickListener{
         typeName = document.type.name
         lastUpdatedDate = if(document.modifiedAt != null) document.modifiedAt!! else document.createAt
 //        documentStatus = document.status
-//        documentStatus = getString(R.string.document_pending)
+        documentStatus = getString(R.string.document_pending)
 
         while (docIterator.hasNext()) {
 
@@ -174,6 +171,9 @@ class DocsList : AppCompatActivity(), OnItemClickListener{
                 versionsQty = 1
 
             } else {
+                if(documentStatus != "") {
+//                    cards[cards.count()].documentStatus = getString(R.string.document_pending)
+                }
                 lastUpdatedDate = if(document.modifiedAt != null) document.modifiedAt!! else document.createAt
                 versionsQty++
             }

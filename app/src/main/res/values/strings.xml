@@ -37,4 +37,9 @@
     <string name="Versions">Versions</string>
     <string name="document_pending">Pending</string>
     <string name="document_is_pending">This document is awaiting authorization</string>
+    <string name="save">Save</string>
+    <string name="new_document">New document</string>
+    <string name="refresh">Refresh</string>
+    <string name="request_success">Document successfully requested</string>
+    <string name="request_fail">Document request failed</string>
 </resources>

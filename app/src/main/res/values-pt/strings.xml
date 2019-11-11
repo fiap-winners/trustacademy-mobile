@@ -34,4 +34,9 @@
     <string name="Versions">Versões</string>
     <string name="document_pending">Pendente</string>
     <string name="document_is_pending">Este documento está aguardando autorização</string>
+    <string name="save">Gravar</string>
+    <string name="new_document">Novo documento</string>
+    <string name="refresh">Atualizar</string>
+    <string name="request_success">Documento solicitado com sucesso</string>
+    <string name="request_fail">Não foi possível solicitar o documento</string>
 </resources>

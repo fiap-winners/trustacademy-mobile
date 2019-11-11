@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView
 import com.fiap.trustacademy.model.Card
 import kotlinx.android.synthetic.main.activity_doc_detail.*
 import androidx.constraintlayout.widget.ConstraintSet
+import com.google.android.gms.dynamic.IFragmentWrapper
 
 class DocDetailActivity : AppCompatActivity() {
 
@@ -20,7 +21,7 @@ class DocDetailActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_doc_detail)
 
-        btnDocuments.setOnClickListener {
+        btnDetailDocuments.setOnClickListener {
             finish()
         }
 
@@ -37,6 +38,7 @@ class DocDetailActivity : AppCompatActivity() {
         val docDate: ArrayList<String> = intent.getStringArrayListExtra("SELECTED_DOCSDATE")
         val docTime: ArrayList<String> = intent.getStringArrayListExtra("SELECTED_DOCSTIME")
         val docContent: ArrayList<String> = intent.getStringArrayListExtra("SELECTED_DOCSCONTENT")
+        val docStatus: ArrayList<String> = intent.getStringArrayListExtra("SELECTED STATUS")
 
         docLastDate.text = card.lastUpdatedDate
         docVersionsQty.text = card.documentVersionQty
@@ -51,13 +53,16 @@ class DocDetailActivity : AppCompatActivity() {
             linearLayout.orientation = LinearLayout.VERTICAL
 
             val textView1 = TextView(this)
-            textView1.text = docDate.get(contentIndex) + " " + this.getString(R.string.at_time) + " " + docTime.get(contentIndex)
+            textView1.text = docDate.get(contentIndex) + " " + this.getString(R.string.at_time) + " " +
+                    docTime.get(contentIndex) + " " +
+                    if(docStatus.get(contentIndex) != null) {this.getString(R.string.document_pending)} else ""
+
             val textView2 = TextView(this)
+
             textView2.text = docContent.get(contentIndex++)
             textView2.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD)
 
             val cardView = CardView(this)
-
             cardView.radius = 10F
             cardView.setContentPadding(8,8,8,8)
             cardView.setCardBackgroundColor(Color.WHITE)

@@ -1,6 +1,8 @@
 package com.fiap.trustacademy
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -11,11 +13,14 @@ import com.fiap.trustacademy.model.*
 import com.fiap.trustacademy.service.RetrofitFactory
 import kotlinx.android.synthetic.main.activity_request_doc.*
 import kotlinx.android.synthetic.main.activity_request_doc.btnClose
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 import java.lang.Exception
-import java.util.*
 
 class RequestDocActivity : AppCompatActivity() {
 
@@ -29,7 +34,6 @@ class RequestDocActivity : AppCompatActivity() {
     lateinit var documentType: DocumentType
     lateinit var department: Department
     lateinit var course: Course
-    lateinit var student: Student
 
     var isLoadDone: Boolean = false
 
@@ -51,18 +55,36 @@ class RequestDocActivity : AppCompatActivity() {
             progressBar2.visibility = View.VISIBLE
 
             try {
-                val document = DocumentToSave(null, null, null, null, null,
-                    null, "Request pending", null, null)
+                /* Chamada selfie */
+//                val intentSelfie = Intent(this, DocDetailActivity::class.java)
+//                startActivity(intentSelfie)
 
-                val docCall = RetrofitFactory().retrofitService()
-                    .setDocument(INSTITUTE_ID, department.id, course.id, STUDENT_ID, documentType.id, document)
-                setDocument(docCall)
+                val fileRef = File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "beacon_logo.png")
+                val fileCheck = File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "beacon_logo.png")
+//                val fileCheck = File("/storage/sdcard/Download/", "beacon_logo.png")
 
-                Toast.makeText(this, getString(R.string.app_description), Toast.LENGTH_LONG)
-                    .show()
+                if(fileRef.exists() && fileCheck.exists()) {
+
+                    val document = DocumentToSave(null, null, null, null, null,
+                        null, "Request pending", null, null)
+
+                    val requestFileRef = RequestBody.create(MediaType.parse("multipart/form-data"), fileRef)
+                    val bodyRef = MultipartBody.Part.createFormData("reference_image", fileRef.name, requestFileRef)
+
+                    val requestFileCheck = RequestBody.create(MediaType.parse("multipart/form-data"), fileCheck)
+                    val bodyCheck = MultipartBody.Part.createFormData("reference_image", fileCheck.name, requestFileCheck)
+
+                    val docCall = RetrofitFactory().retrofitService()
+                        .setDocument(INSTITUTE_ID, department.id, course.id, STUDENT_ID, documentType.id, document, bodyRef, bodyCheck)
+                    setDocument(docCall)
+
+                } else {
+                    Toast.makeText(this, getString(R.string.request_fail), Toast.LENGTH_LONG)
+                        .show()
+                }
             }
             catch (e: Exception) {
-                Toast.makeText(this, getString(R.string.not_implemented), Toast.LENGTH_LONG)
+                Toast.makeText(this, getString(R.string.request_fail), Toast.LENGTH_LONG)
                 .show()
 
                 Log.e("ERROR", e.message ?: "Ocorreu um erro!")
@@ -70,6 +92,10 @@ class RequestDocActivity : AppCompatActivity() {
             finally {
                 progressBar2.visibility = View.INVISIBLE
             }
+        }
+
+        btnRequestDocuments.setOnClickListener{
+            finish()
         }
 
         btnClose.setOnClickListener {
@@ -80,13 +106,18 @@ class RequestDocActivity : AppCompatActivity() {
     private fun setDocument(call: Call<Document>) {
         call.enqueue(object: Callback<Document> {
             override fun onResponse(call: Call<Document>, response: Response<Document>) {
-                response.let {
-                    val doc = it.body()!!
+                if(response.isSuccessful()) {
+                    Toast.makeText(parent, parent.getString(R.string.request_success), Toast.LENGTH_LONG)
+                        .show()
+                } else {
+                    Log.e("ERROR", response.errorBody()!!.string())
                 }
             }
 
             override fun onFailure(call: Call<Document>, t: Throwable) {
                 Log.e("Error", t?.message)
+                Toast.makeText(parent, getString(R.string.request_fail), Toast.LENGTH_LONG)
+                    .show()
                 progressBar2.visibility = View.INVISIBLE
             }
         })
@@ -155,7 +186,7 @@ class RequestDocActivity : AppCompatActivity() {
     private fun callDDocumentTypeList(doctype: List<DocumentType>) {
 
         val adapter = ArrayAdapter<DocumentType>(this, android.R.layout.simple_dropdown_item_1line, doctype)
-        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+//        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
 
         spnDocType.adapter = adapter
         spnDocType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -163,7 +194,6 @@ class RequestDocActivity : AppCompatActivity() {
 
                 documentType = parent.getItemAtPosition(position) as DocumentType
 
-//                progressBar2.visibility = View.VISIBLE
             }
 
             override fun onNothingSelected(parent: AdapterView<*>){
@@ -174,7 +204,7 @@ class RequestDocActivity : AppCompatActivity() {
     private fun callDepartmentsList(deps: List<Department>) {
 
         val adapter = ArrayAdapter<Department>(this, android.R.layout.simple_dropdown_item_1line, deps)
-        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+//        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
 
         spnDepartments.adapter = adapter
         spnDepartments.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -196,7 +226,7 @@ class RequestDocActivity : AppCompatActivity() {
     private fun callCoursesList(crs: List<Course>) {
 
         val adapter = ArrayAdapter<Course>(this, android.R.layout.simple_dropdown_item_1line, crs)
-        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+//        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
 
         spnCourses.adapter = adapter
         spnCourses.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

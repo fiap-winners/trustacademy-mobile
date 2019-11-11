@@ -9,8 +9,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
             android:allowBackup="true"
@@ -32,7 +31,7 @@
         <activity android:name=".RequestDocActivity">
         </activity>
         <activity android:name=".DocsList"
-                  android:screenOrientation="portrait">
+                  android:screenOrientation="user">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
