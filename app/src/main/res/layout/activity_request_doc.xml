@@ -93,14 +93,15 @@
             app:layout_constraintTop_toBottomOf="@+id/topBar">
 
         <TextView
-                android:id="@+id/textView9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="2dp"
-                android:paddingRight="2dp"
-                android:text="@string/new_document"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:text="@string/new_document"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
                 android:id="@+id/textView10"

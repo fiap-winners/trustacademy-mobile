@@ -2,8 +2,10 @@ package com.fiap.trustacademy.service
 
 import android.media.Image
 import com.fiap.trustacademy.model.*
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -33,14 +35,23 @@ interface RetrofitService {
     @GET("institutes/{instituteId}/document-types")
     fun getDocumentTypeByInstitute(@Path("instituteId") instituteId: Long): Call<List<DocumentType>>
 
-    @Multipart
     @POST("institutes/{instituteId}/departments/{departmentId}/courses/{courseId}/students/{studentId}/document-types/{documentType}/documents")
     fun setDocument(@Path("instituteId") instituteId: Long,
                     @Path("departmentId") departmentId: Long,
                     @Path("courseId") courseId: Long,
                     @Path("studentId") studentId: Long,
                     @Path("documentType") documentTypeId: Long,
-                    @Part("document") document: DocumentToSave,
-                    @Part referenceImage: MultipartBody.Part,
-                    @Part checkImage: MultipartBody.Part): Call<Document>
+                    @Body document: DocumentToSave): Call<ResponseBody>
+
+    @Multipart
+    @POST("institutes/{instituteId}/departments/{departmentId}/courses/{courseId}/students/{studentId}/document-types/{documentType}/documents/with-face-recognition")
+//    @Headers("Content-Type: application/x-www-form-urlencoded; charset=utf-8")
+    fun setDocumentWithFaceRecognition(@Path("instituteId") instituteId: Long,
+                                       @Path("departmentId") departmentId: Long,
+                                       @Path("courseId") courseId: Long,
+                                       @Path("studentId") studentId: Long,
+                                       @Path("documentType") documentTypeId: Long,
+                                       @Part("content") content: String,
+                                       @Part sourceImage: MultipartBody.Part,
+                                       @Part checkImage: MultipartBody.Part): Call<Document>
 }

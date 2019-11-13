@@ -1,5 +1,6 @@
 package com.fiap.trustacademy
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
@@ -11,11 +12,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.fiap.trustacademy.model.*
 import com.fiap.trustacademy.service.RetrofitFactory
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_request_doc.*
 import kotlinx.android.synthetic.main.activity_request_doc.btnClose
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -59,23 +62,20 @@ class RequestDocActivity : AppCompatActivity() {
 //                val intentSelfie = Intent(this, DocDetailActivity::class.java)
 //                startActivity(intentSelfie)
 
-                val fileRef = File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "beacon_logo.png")
-                val fileCheck = File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "beacon_logo.png")
+                val fileRef = File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "beaconlogo.png")
+                val fileCheck = File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "beaconlogo.png")
 //                val fileCheck = File("/storage/sdcard/Download/", "beacon_logo.png")
 
                 if(fileRef.exists() && fileCheck.exists()) {
 
-                    val document = DocumentToSave(null, null, null, null, null,
-                        null, "Request pending", null, null)
-
                     val requestFileRef = RequestBody.create(MediaType.parse("multipart/form-data"), fileRef)
-                    val bodyRef = MultipartBody.Part.createFormData("reference_image", fileRef.name, requestFileRef)
+                    val bodyRef = MultipartBody.Part.createFormData("sourceImage", fileRef.name, requestFileRef)
 
                     val requestFileCheck = RequestBody.create(MediaType.parse("multipart/form-data"), fileCheck)
-                    val bodyCheck = MultipartBody.Part.createFormData("reference_image", fileCheck.name, requestFileCheck)
+                    val bodyCheck = MultipartBody.Part.createFormData("targetImage", fileCheck.name, requestFileCheck)
 
                     val docCall = RetrofitFactory().retrofitService()
-                        .setDocument(INSTITUTE_ID, department.id, course.id, STUDENT_ID, documentType.id, document, bodyRef, bodyCheck)
+                        .setDocumentWithFaceRecognition(INSTITUTE_ID, department.id, course.id, STUDENT_ID, documentType.id, "Request pending validation", bodyRef, bodyCheck)
                     setDocument(docCall)
 
                 } else {
@@ -107,16 +107,18 @@ class RequestDocActivity : AppCompatActivity() {
         call.enqueue(object: Callback<Document> {
             override fun onResponse(call: Call<Document>, response: Response<Document>) {
                 if(response.isSuccessful()) {
-                    Toast.makeText(parent, parent.getString(R.string.request_success), Toast.LENGTH_LONG)
+                    Toast.makeText(this@RequestDocActivity, getString(R.string.request_success), Toast.LENGTH_LONG)
                         .show()
                 } else {
                     Log.e("ERROR", response.errorBody()!!.string())
+                    Toast.makeText(this@RequestDocActivity, getString(R.string.request_fail), Toast.LENGTH_LONG)
+                        .show()
                 }
             }
 
             override fun onFailure(call: Call<Document>, t: Throwable) {
                 Log.e("Error", t?.message)
-                Toast.makeText(parent, getString(R.string.request_fail), Toast.LENGTH_LONG)
+                Toast.makeText(this@RequestDocActivity, getString(R.string.request_fail), Toast.LENGTH_LONG)
                     .show()
                 progressBar2.visibility = View.INVISIBLE
             }

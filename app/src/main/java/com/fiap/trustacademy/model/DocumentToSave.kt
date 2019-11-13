@@ -10,7 +10,7 @@ data class DocumentToSave(
     @SerializedName("department")val department: Department?,
     @SerializedName("course")val course: Course?,
     @SerializedName("type")val type: DocumentType?,
-    @SerializedName("content")val content: String?,
+    @SerializedName("content")val content: String,
     @SerializedName("createAt")val createAt: Date?,
     @SerializedName("modifiedAt")val modifiedAt: Date?
 ) {}
