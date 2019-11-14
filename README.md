@@ -24,7 +24,8 @@ Para verificar a funcionalidade siga os passos:
 7. O aplicativo solicitará que o usuário tire uma foto para verificar a autenticidade de sua identidade. Siga o procedimento do **passo 2**;
 8. Envie a fotografia clicando no botão "Mandar foto";
 9. Aguarde a verificação da autenticidade do solicitante;
-10. Verificada a identidade positivamente o novo documento será emitido e aparecerá na tela de documentos. Se o documento já tiver sido emitido anteriormente, uma nova versão será adicionada.
+10. Verificada a identidade positivamente o novo documento será emitido e aparecerá na tela de documentos. Se o documento já tiver sido emitido anteriormente, uma nova versão será adicionada;
+11. Se identificada uma identidade diferente o documento não é emitido.
 
 ## Tecnologia
 A verificação da autenticidade do solicitante é realizada utilizando o serviço **Amazon Rekognition Image** da AWS.
