@@ -1,5 +1,6 @@
 package com.fiap.trustacademy
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -49,7 +50,11 @@ class ForgotPasswordActivity : AppCompatActivity() {
                         val message = "Email Enviado."
                         Log.d(TAG, message)
                         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-                        updateUI()
+
+                        val intentCamera = Intent(this, CameraActivity::class.java)
+                        intentCamera.putExtra("PICTURE TYPE", "acc")
+                        startActivityForResult(intentCamera, 1)
+
                     } else{
                         Log.w(TAG, task.exception!!.message!!)
                         Toast.makeText(this, "Nenhum usuário encontrado, com esse e-mail", Toast.LENGTH_SHORT).show()
@@ -57,6 +62,22 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 }
         } else {
             Toast.makeText(this, "Entre com um e-mail válido", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK) {
+                if (data != null) {
+                    val teste = data.getStringExtra("RESULT")
+
+                    if (teste == "OK") {
+                        updateUI()
+                    }
+                }
+            }
         }
     }
 

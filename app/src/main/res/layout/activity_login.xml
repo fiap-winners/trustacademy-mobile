@@ -104,14 +104,16 @@
                 android:layout_marginRight="70dp" tools:text="@string/create_account"/>
 
         <TextView
-                android:id="@+id/tv_forgot_password"
-                android:layout_width="109dp"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary"
-                android:text="@string/forgot_your_login_info"
-                android:layout_marginTop="40dp"
-                android:textSize="5pt"
-                android:layout_gravity="center_horizontal" tools:text="@string/forgot_your_login_info"/>
+            android:id="@+id/tv_forgot_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:text="@string/forgot_your_login_info"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="5pt"
+            tools:text="@string/forgot_your_login_info" />
 
     </LinearLayout>
 
