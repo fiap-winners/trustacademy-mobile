@@ -39,4 +39,5 @@
     <string name="refresh">Atualizar</string>
     <string name="request_success">Documento solicitado com sucesso</string>
     <string name="request_fail">Não foi possível solicitar o documento</string>
+    <string name="request_not_auth">Requisição não autorizada. Pessoa diferente do cadastro.</string>
 </resources>

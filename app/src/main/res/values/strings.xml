@@ -42,4 +42,5 @@
     <string name="refresh">Refresh</string>
     <string name="request_success">Document successfully requested</string>
     <string name="request_fail">Document request failed</string>
+    <string name="request_not_auth">Unauthorized request. Person other than registration</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.fiap.trustacademy
 
+import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
 import android.nfc.Tag
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -14,6 +16,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_request_doc.*
 import kotlin.math.log
 
 
@@ -101,8 +104,10 @@ class CreateAccountActivity : AppCompatActivity() {
                     currentUserDb.child("firstName").setValue(firstName)
                     currentUserDb.child("lastName").setValue(lastName)
 
-                    //Atualizar as informações no banco de dados
-                    updateUserInfoandUi()
+                    val intentCamera = Intent(this, CameraActivity::class.java)
+                    intentCamera.putExtra("PICTURE TYPE", "acc")
+                    startActivityForResult(intentCamera, 1)
+
 
                 } else {
                     Log.w(TAG,"CreateUserWithEmail:Failure",task.exception)
@@ -111,6 +116,23 @@ class CreateAccountActivity : AppCompatActivity() {
                 }
             }
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK) {
+                if (data != null) {
+                    val teste = data.getStringExtra("RESULT")
+
+                    if (teste == "OK") {
+                        //Atualizar as informações no banco de dados
+                        updateUserInfoandUi()
+                    }
+                }
+            }
+        }
     }
 
     private fun updateUserInfoandUi(){
