@@ -40,4 +40,7 @@
     <string name="request_success">Documento solicitado com sucesso</string>
     <string name="request_fail">Não foi possível solicitar o documento</string>
     <string name="request_not_auth">Requisição não autorizada. Pessoa diferente do cadastro.</string>
+    <string name="send_picture">Mandar foto</string>
+    <string name="take_picture">Tirar foto</string>
+    <string name="take_picture_advice">Para garantir sua segurança precisamos de uma fotografia. Enquadre seu rosto e clique em tirar foto</string>
 </resources>

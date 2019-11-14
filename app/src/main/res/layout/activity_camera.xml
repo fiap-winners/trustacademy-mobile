@@ -1,43 +1,51 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
     android:orientation="vertical"
     tools:context=".CameraActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            app:cardBackgroundColor="@android:color/holo_blue_dark">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="24sp" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="3dp"
+            android:text="@string/take_picture_advice"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="59dp"
-        android:gravity="bottom|center"
-        android:text="@string/app_name"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
-        android:textSize="36sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="40dp"
-        android:text="Seja Bem Vindo!
-                            Precisamos de uma Self"
-        android:textColor="@color/colorPrimary"
-        android:textSize="16sp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="7dp"
-        android:background="#dddddd" />
+        android:background="@android:color/darker_gray" />
 
 
     <LinearLayout
@@ -48,7 +56,8 @@
             android:id="@+id/imageView1"
             android:layout_width="199dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@android:color/darker_gray" />
 
         <Button
             android:id="@+id/btnTakePicture"
@@ -56,7 +65,7 @@
             android:layout_height="58dp"
             android:layout_weight="1"
             android:onClick="tirarFoto"
-            android:text="Tirar foto" />
+            android:text="@string/take_picture" />
 
     </LinearLayout>
 
@@ -64,13 +73,13 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="7dp"
-        android:background="#dddddd" />
+        android:background="@android:color/darker_gray" />
 
     <Button
         android:id="@+id/btnSendPicture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="savePicture"
-        android:text="Enviar foto" />
+        android:text="@string/send_picture" />
 
 </LinearLayout>

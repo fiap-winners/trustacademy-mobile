@@ -43,4 +43,7 @@
     <string name="request_success">Document successfully requested</string>
     <string name="request_fail">Document request failed</string>
     <string name="request_not_auth">Unauthorized request. Person other than registration</string>
+    <string name="take_picture">Take picture</string>
+    <string name="send_picture">Send picture</string>
+    <string name="take_picture_advice">To ensure your safety we need a photograph. Frame your face and click take picture</string>
 </resources>

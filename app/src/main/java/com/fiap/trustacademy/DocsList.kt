@@ -142,7 +142,7 @@ class DocsList : AppCompatActivity(), OnItemClickListener{
         typeName = document.type.name
         lastUpdatedDate = if(document.modifiedAt != null) document.modifiedAt!! else document.createAt
 //        documentStatus = document.status
-        documentStatus = getString(R.string.document_pending)
+//        documentStatus = getString(R.string.document_pending)
 
         while (docIterator.hasNext()) {
 
