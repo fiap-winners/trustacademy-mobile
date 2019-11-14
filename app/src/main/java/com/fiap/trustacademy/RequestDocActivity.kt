@@ -129,10 +129,18 @@ class RequestDocActivity : AppCompatActivity() {
                 if(response.isSuccessful()) {
                     Toast.makeText(this@RequestDocActivity, getString(R.string.request_success), Toast.LENGTH_LONG)
                         .show()
+                    if(fileCheck.exists()) {
+                        fileCheck.delete()
+                    }
+                    progressBar2.visibility = View.INVISIBLE
                 } else {
                     Log.e("ERROR", response.errorBody()!!.string())
                     Toast.makeText(this@RequestDocActivity, getString(R.string.request_fail), Toast.LENGTH_LONG)
                         .show()
+                    if(fileCheck.exists()) {
+                        fileCheck.delete()
+                    }
+                    progressBar2.visibility = View.INVISIBLE
                 }
             }
 
@@ -140,12 +148,12 @@ class RequestDocActivity : AppCompatActivity() {
                 Log.e("Error", t?.message)
                 Toast.makeText(this@RequestDocActivity, getString(R.string.request_not_auth), Toast.LENGTH_LONG)
                     .show()
+                if(fileCheck.exists()) {
+                    fileCheck.delete()
+                }
+                progressBar2.visibility = View.INVISIBLE
             }
         })
-        if(fileCheck.exists()) {
-            fileCheck.delete()
-        }
-        progressBar2.visibility = View.INVISIBLE
     }
 
     fun getDocumentTypes(call: Call<List<DocumentType>>) {
