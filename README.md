@@ -31,4 +31,4 @@ Para verificar a funcionalidade siga os passos:
 A verificação da autenticidade do solicitante é realizada utilizando o serviço **Amazon Rekognition Image** da AWS.
 A imagem de referência, do cadastro do usuário, e a imagem do momento da requisição da emissão de novo documento são enviadas para o serviço de reconhecimento de imagem, que estabelece uma pontuação de similaridade entre elas. A identificação positiva é estabelecida obtendo uma pontuação igual ou superior a 70 pontos.
 
-Mais informações sobre o serviço podem ser obtidas [aqui](https://aws.amazon.com/pt/rekognition/image-features/).
+> Mais informações sobre o serviço podem ser obtidas [aqui](https://aws.amazon.com/pt/rekognition/image-features/).
