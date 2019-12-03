@@ -12,6 +12,8 @@ O objetivo do teste é avaliar o processo de segurança de confirmação de iden
 ### Funcionalidade
 Ao solicitar a emissão de um novo documento o aplicativo pedirá que o usuário forneça uma fotografia de si mesmo para comparar com a imagem armazenada no cadastro do usuário e assim autenticar a identidade do solicitante.
 
+Devido à diferença de funcionamento das várias versões do Android, para garantir o correto funcionamento do aplicativo, após realizar a instalação acesse as configurações e habilite o acesso do Trust Academy à câmera e ao armazenamento.
+
 ### Procedimentos
 Para verificar a funcionalidade siga os passos:
 
